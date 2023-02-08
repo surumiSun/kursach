@@ -46,11 +46,12 @@ $config = [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'rules' => [
-            ],
+            'rules' => [],
         ],
     ],
     'params' => $params,
+    'language' => 'ru',
+    'name' => 'Магазин',
 ];
 
 if (YII_ENV_DEV) {
