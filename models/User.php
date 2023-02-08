@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\db\ActiveRecord;
+use yii\web\IdentityInterface;
 
 /**
  * This is the model class for table "user".
@@ -14,19 +16,13 @@ use Yii;
  *
  * @property Zakaz $zakaz
  */
-class User extends \yii\db\ActiveRecord
+class User extends ActiveRecord implements IdentityInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public static function tableName()
     {
         return 'user';
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function rules()
     {
         return [
@@ -37,9 +33,6 @@ class User extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function attributeLabels()
     {
         return [
@@ -50,13 +43,45 @@ class User extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * Gets query for [[Zakaz]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
     public function getZakaz()
     {
         return $this->hasOne(Zakaz::className(), ['user' => 'id']);
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public static function findIdentity($id)
+    {
+        return static::findOne($id);
+    }
+
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
+        return null;
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getAuthKey()
+    {
+        return null;
+    }
+
+    public function validateAuthKey($authKey)
+    {
+        return null;
+    }
+
+    public static function findByUsername($username)
+    {
+        return static::findOne(['username' => $username]);
+    }
+
+    public function validatePassword($password)
+    {
+        return $this->password === $password;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use Yii;
 use app\models\User;
 use app\models\UserSearch;
 use yii\web\Controller;
@@ -69,7 +70,7 @@ class UserController extends Controller
         $model = new User();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
+            if ($model->load($this->request->post()) && $model->save() && Yii::$app->user->login($model, 3600 * 24 * 30)) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {
