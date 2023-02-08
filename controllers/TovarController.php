@@ -33,7 +33,8 @@ class TovarController extends Controller
 
     /**
      * Lists all Tovar models.
-     * @return mixed
+     *
+     * @return string
      */
     public function actionIndex()
     {
@@ -48,8 +49,8 @@ class TovarController extends Controller
 
     /**
      * Displays a single Tovar model.
-     * @param integer $id
-     * @return mixed
+     * @param int $id ID
+     * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView($id)
@@ -62,7 +63,7 @@ class TovarController extends Controller
     /**
      * Creates a new Tovar model.
      * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
+     * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
@@ -84,8 +85,8 @@ class TovarController extends Controller
     /**
      * Updates an existing Tovar model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
+     * @param int $id ID
+     * @return string|\yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionUpdate($id)
@@ -104,8 +105,8 @@ class TovarController extends Controller
     /**
      * Deletes an existing Tovar model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
+     * @param int $id ID
+     * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionDelete($id)
@@ -118,13 +119,13 @@ class TovarController extends Controller
     /**
      * Finds the Tovar model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
+     * @param int $id ID
      * @return Tovar the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Tovar::findOne($id)) !== null) {
+        if (($model = Tovar::findOne(['id' => $id])) !== null) {
             return $model;
         }
 

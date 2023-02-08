@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\TovarSearch;
 
 class SiteController extends Controller
 {
@@ -61,7 +62,9 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $searchModel = new TovarSearch();
+        $dataProvider = $searchModel->search($this->request->queryParams);
+        return $this->render('index', compact('searchModel', 'dataProvider'));
     }
 
     /**

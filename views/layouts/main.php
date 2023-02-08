@@ -1,7 +1,7 @@
 <?php
 
-/* @var $this \yii\web\View */
-/* @var $content string */
+/** @var yii\web\View $this */
+/** @var string $content */
 
 use app\assets\AppAsset;
 use app\widgets\Alert;
@@ -50,11 +50,9 @@ AppAsset::register($this);
         ?>
     </header>
 
-    <main role="main" class="flex-shrink-0">
+    <main class="flex-shrink-0">
         <div class="container">
-            <?= Breadcrumbs::widget([
-                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-            ]) ?>
+            <?= Breadcrumbs::widget(['links' => $this->params['breadcrumbs']]) ?>
             <?= Alert::widget() ?>
             <?= $content ?>
         </div>
